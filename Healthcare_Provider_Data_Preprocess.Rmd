@@ -1,0 +1,72 @@
+---
+title: 'Healthcare_Provider_Data_Preprocess'
+author: 'UNI: kcw2144'
+date: 'October 14, 2018'
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE, 
+                      cache = TRUE)
+```
+
+
+```{r libraries, echo=FALSE}
+library(data.table)
+library(DT)
+library(readxl)
+```
+
+
+### Data Cleaning
+
+```{r data cleaning, echo=TRUE}
+
+patientcare.data.2016 <- as.data.table(read_excel("./Healthcare_Provider_2016.xlsx", 
+                                                  sheet = 3, range = NULL, 
+                                                  col_names = TRUE, col_types = NULL, 
+                                                  na = "", trim_ws = TRUE, skip = 0))
+patientcare.data.2016 <- as.data.frame(patientcare.data.2016)
+patientcare.data.2016[] <- lapply(patientcare.data.2016, gsub, pattern= "*", 
+                                  replacement="NA ", fixed = TRUE)
+ov_name.2016 <- colnames(patientcare.data.2016)
+vn_cleanup <- function(x) { 
+for (i in 1:length(x)) {
+  x[i] <- gsub(pattern = " ", replacement = "_", x = x[i],fixed = TRUE)
+  x[i] <- gsub(pattern = "-", replacement = "_", x = x[i],fixed = TRUE)
+  x[i] <- gsub(pattern = "___", replacement = "_", x = x[i],fixed = TRUE)
+  x[i] <- gsub(pattern = "_hospice_beneficiaries", replacement = "", 
+               x = x[i],fixed = TRUE)
+  x[i] <- gsub(pattern = "hospice_care_days", replacement = "CDys", 
+               x = x[i],fixed = TRUE)
+  x[i] <- gsub(pattern = "Visit_Hours_per_Day", replacement = "Hrs/D", 
+               x = x[i],fixed = TRUE)
+  x[i] <- gsub(pattern = "During_Week_Prior_to_Death", replacement = "LW", 
+               x = x[i],fixed = TRUE)
+  x[i] <- gsub(pattern = "_Payment_Amount", replacement = "", 
+               x = x[i],fixed = TRUE)
+}
+return(x)
+}
+nv_names.2016 <- vn_cleanup(x = ov_name.2016)
+setnames(x=patientcare.data.2016, old = ov_name.2016, new = nv_names.2016)
+
+names(patientcare.data.2016)[19:21] <- substring(names(patientcare.data.2016)[19:21],23)
+names(patientcare.data.2016)[35:39] <- substring(names(patientcare.data.2016)[35:39],51)
+names(patientcare.data.2016)[41:47] <- substring(names(patientcare.data.2016)[41:47],17)
+names(patientcare.data.2016)[40] <- substring(names(patientcare.data.2016)[40],28)
+names(patientcare.data.2016)[43] <- substring(names(patientcare.data.2016)[43],19)
+
+cols.num <- colnames(patientcare.data.2016[c(6,8:47)])
+patientcare.data.2016[cols.num] <- sapply(patientcare.data.2016[cols.num],as.numeric)
+patientcare.data.2016[cols.num] <- sapply(patientcare.data.2016[cols.num],as.numeric)
+patientcare.data.2016 <- as.data.table(patientcare.data.2016)
+
+colnames(patientcare.data.2016)
+#write.csv(patientcare.data.2016, "Healthcare_Provider_2016C.csv")
+```
+
