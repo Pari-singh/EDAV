@@ -1,0 +1,68 @@
+---
+title: "Length of Stay of Patients in Hospice Care in US"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Through the GeoSpatial representation of our data, we present and compare various cities where the Patients are kept for either lesser than 7 days or more than 180 days in Hospice Day Care. 
+The data has been normalised based on the population of that city, which is represented by the total number of Hospice Beneficiaries.
+
+We also clean the data by formatting the Zip Code and removing missing Data but still we face one major challenge i.e., our data is very limited as compared to the Geo-Mapping space of the Nation. 
+
+
+
+```{r}
+library(choroplethrZip)
+data <- read.csv('data2016Q2.csv')
+data1 <- data.frame(data$ZIP_Code, data$Hospice_beneficiaries_with_7_or_fewer_hospice_care_days,data$Hospice_beneficiaries)
+data1[is.na(data1)] <- 0
+names(data1) <- c("ZIP_Code", "within_7_days", "Hospice_beneficiaries")
+data2 <- aggregate(cbind(data1$within_7_days, data1$Hospice_beneficiaries), by=list(data1$ZIP_Code), FUN=sum)
+data2$V1 <- data2$V1/data2$V2
+data2 <- data.frame(data2$Group.1, data2$V1)
+names(data2) <- c("region", "value")
+
+data2$region <- as.character(data2$region)
+
+data2$region <- sapply(data2$region, function(x){if(nchar(x)<5){paste0(0,x)}else{x}})
+data2$region <- sapply(data2$region, function(x){if(nchar(x)<5){paste0(0,x)}else{x}})
+
+
+library(ggplot2)
+choro = ZipChoropleth$new(data2)
+library(ggplot2)
+choro = ZipChoropleth$new(data2)
+zip_choropleth(data2,
+               title      = "2016: Less than 7 Hospice care days per beneficiary",
+               num_colors = 3,
+               legend     = "Care_day per beneficiary")
+```
+
+```{r}
+library(choroplethrZip)
+data <- read.csv('data2016Q2.csv')
+data3 <- data.frame(data$ZIP_Code, data$Hospice_beneficiaries_with_more_than_180_hospice_care_days,data$Hospice_beneficiaries)
+data3[is.na(data3)] <- 0
+names(data3) <- c("ZIP_Code", "more_than_180", "Hospice_beneficiaries")
+data4 <- aggregate(cbind(data3$more_than_180, data3$Hospice_beneficiaries), by=list(data3$ZIP_Code), FUN=sum)
+data4$V1 <- data4$V1/data4$V2
+data4 <- data.frame(data4$Group.1, data4$V1)
+names(data4) <- c("region", "value")
+
+data4$region <- as.character(data4$region)
+
+data4$region <- sapply(data4$region, function(x){if(nchar(x)<5){paste0(0,x)}else{x}})
+data4$region <- sapply(data4$region, function(x){if(nchar(x)<5){paste0(0,x)}else{x}})
+
+library(ggplot2)
+choro = ZipChoropleth$new(data4)
+zip_choropleth(data4,
+               title      = "2016: More than 180 Hospice care days per beneficiary",
+               num_colors = 3,
+               legend     = "Care_day per beneficiary")
+```
