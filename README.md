@@ -1,4 +1,4 @@
-# EDAV Final Project
+# Exploratory Data Analysis and Visualization (STAT 5702) -Final Project
 
 ## Provider based analysis of Hospice Care
 
