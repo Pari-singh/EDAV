@@ -15,5 +15,6 @@ Center for Medicare & Medicaid Services (CMS's) released Pubic User Files (PUF) 
 ### 3. Execution and report
 
 The pdf and rmd file for the execution of codes and visual graphs along with the report is available at:
+
  https://github.com/Pari-singh/EDAV/blob/master/Provider_based_analysis_of_Hospice_Care_kcw2144-ps3060.pdf
- https://github.com/Pari-singh/EDAV/blob/master/Provider%20based%20analysis%20of%20Hospice%20Care_kcw2144-ps3060.Rmd
+ https://github.com/Pari-singh/EDAV/blob/master/Hospice_data.Rmd
