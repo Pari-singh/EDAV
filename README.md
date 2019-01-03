@@ -7,7 +7,9 @@ Project Members : Kushal Wijesundara and Paridhi Singh
 ### 1. Introduction
 
 Between 1975 and 2016, life expectancy at birth increased from 72.6 to 78.8 years for the total U.S. population (https://www.cdc.gov/nchs/data/hus/hus16.pdf#014), and it is expected to rise up to 85 years by 2050 (https://www.census.gov/prod/2014pubs/p25-1140.pdf). However, healthcare system, designed in 1965 to care for such increasing aging population, has not kept pace and aligned with the needs. Also, terminal illnesses create significant expenses for the Medicare program and present a major disadvantage to the quality of life. Hospice care was designed to provide a better quality of life to the patients and have less burden on the Medicare system. Hospice care is given to patients who are terminally ill with a life expectancy of 6 months or less.With the available hospice care data for the years 2016 - 2014, we present trends in hospice care and identify hospice care and service utilization. Identification of potential issues and service utilization will benefit the entire Medicare system and on the terminally ill population. Group responsibilities are listed as follow: 
+
 Member 1.(Kushal :kcw2144)-data preprocessing, exploratory analysis, and visualization
+
 Member 2.(Paridhi:ps3060)-data preprocessing, interactive component designing and visualization implementation.
 
 ### 2. Description of data
