@@ -1,7 +1,5 @@
 ---
 title: 'Provider based analysis of Hospice Care'
-author: 'https://github.com/kcw2144-ps3060/EDAV'
-date: 
 output:
   pdf_document: default
   html_document:
