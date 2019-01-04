@@ -22,3 +22,8 @@ The pdf and rmd file for the execution of codes and visual graphs along with the
 
  https://github.com/Pari-singh/EDAV/blob/master/Provider_based_analysis_of_Hospice_Care_kcw2144-ps3060.pdf
  https://github.com/Pari-singh/EDAV/blob/master/Hospice_data.Rmd
+ 
+ ### Interactive Component
+ 
+ https://kcw2144-ps3060.github.io/EDAV/
+ https://kcw2144-ps3060.github.io/Days/
