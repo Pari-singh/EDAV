@@ -25,5 +25,5 @@ The pdf and rmd file for the execution of codes and visual graphs along with the
  
  ### Interactive Component
  
- https://kcw2144-ps3060.github.io/EDAV/
+ https://kcw2144-ps3060.github.io/EDAV/   
  https://kcw2144-ps3060.github.io/Days/
